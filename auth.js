@@ -1,26 +1,38 @@
-// --- Login / Logout buttons ---
 const loginBtn = document.getElementById('login-btn');
 const logoutBtn = document.getElementById('logout-btn');
 
-if (loginBtn) loginBtn.addEventListener('click', () => auth.signInWithPopup(provider));
-if (logoutBtn) logoutBtn.addEventListener('click', () => auth.signOut());
+// Firebase auth
+const auth = firebase.auth();
+const provider = new firebase.auth.GoogleAuthProvider();
 
-// --- Toggle UI based on auth state ---
+// Sign in with popup
+if (loginBtn) {
+  loginBtn.addEventListener('click', () => {
+    auth.signInWithPopup(provider).catch(err => {
+      console.error('Login failed:', err);
+    });
+  });
+}
+
+// Sign out
+if (logoutBtn) {
+  logoutBtn.addEventListener('click', () => {
+    auth.signOut();
+  });
+}
+
+// Toggle UI on login state change
 auth.onAuthStateChanged(user => {
   if (loginBtn && logoutBtn) {
     if (user) {
       loginBtn.style.display = 'none';
       logoutBtn.style.display = 'inline-block';
-
-      // show post form if it exists
-      const postContainer = document.getElementById('postFormContainer');
-      if (postContainer) postContainer.style.display = 'block';
     } else {
       loginBtn.style.display = 'inline-block';
       logoutBtn.style.display = 'none';
-
-      const postContainer = document.getElementById('postFormContainer');
-      if (postContainer) postContainer.style.display = 'none';
     }
   }
+
+  // Optional: personalize greeting or unlock features
+  console.log("User status:", user ? `Signed in as ${user.displayName}` : "Signed out");
 });
