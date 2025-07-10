@@ -1,0 +1,101 @@
+*{box-sizing:border-box}
+
+body{
+  font-family: 'Rubik', sans-serif;
+  margin:0;
+  background:#f8f9fa;
+  color:#212529;
+}
+
+/* Navbar */
+.navbar{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:0.75rem 1rem;
+  background:#fff;
+  box-shadow:0 2px 4px rgba(0,0,0,0.05);
+  position:sticky;
+  top:0;
+}
+
+.logo{
+  font-weight:700;
+  text-decoration:none;
+  color:#007bff;
+}
+
+#nav-links a{
+  margin-right:1rem;
+  text-decoration:none;
+  color:#212529;
+}
+
+button{
+  padding:0.5rem 1rem;
+  border:none;
+  border-radius:8px;
+  background:#007bff;
+  color:#fff;
+  cursor:pointer;
+}
+
+/* Layout */
+.container{
+  max-width:640px;
+  margin:auto;
+  padding:1rem;
+}
+
+.hero{
+  text-align:center;
+  margin-top:2rem;
+}
+
+.hero h1{
+  font-size:2rem;
+  margin-bottom:0.5rem;
+}
+
+.cta{
+  display:inline-block;
+  margin-top:1rem;
+  background:#28a745;
+  padding:0.75rem 1.5rem;
+  border-radius:8px;
+  color:#fff;
+  text-decoration:none;
+}
+
+/* Forms & Results */
+form label{
+  display:block;
+  margin-top:1rem;
+}
+
+select, textarea{
+  width:100%;
+  padding:0.5rem;
+  border:1px solid #ccc;
+  border-radius:8px;
+  margin-top:0.25rem;
+}
+
+.results{
+  margin-top:1.5rem;
+}
+
+.hustle{
+  background:#e9f5ff;
+  padding:1rem;
+  border-radius:8px;
+  margin-top:0.75rem;
+}
+
+.post{
+  background:#fff;
+  padding:1rem;
+  border-radius:8px;
+  box-shadow:0 1px 2px rgba(0,0,0,0.05);
+  margin-top:1rem;
+}

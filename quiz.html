@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Find Your Hustle</title>
+  <link rel="stylesheet" href="styles.css">
+  <script defer src="firebase.js"></script>
+  <script defer src="auth.js"></script>
+  <script defer src="quiz.html"></script>
+</head>
+<body>
+  <nav class="navbar">
+    <a href="index.html" class="logo">💸 SideHustle</a>
+    <div id="nav-links">
+      <a href="quiz.html">Find Hustle</a>
+      <a href="posts.html">Posts</a>
+      <a href="about.html">About</a>
+      <button id="login-btn">Login</button>
+      <button id="logout-btn" style="display:none;">Logout</button>
+    </div>
+  </nav>
+
+  <main class="container">
+    <h2>🧩 Quick Quiz</h2>
+    <form id="hustleForm">
+      <label>How old are you?
+        <select id="age">
+          <option value="13-15">13-15</option>
+          <option value="16-18">16-18</option>
+        </select>
+      </label>
+
+      <label>Free time per week?
+        <select id="time">
+          <option value="less">Less than 5 h</option>
+          <option value="medium">5-10 h</option>
+          <option value="more">10+ h</option>
+        </select>
+      </label>
+
+      <label>Pick your vibe
+        <select id="interest">
+          <option value="tech">Tech / Gaming</option>
+          <option value="creative">Art / Design</option>
+          <option value="social">Social Media</option>
+          <option value="hands">Hands-on</option>
+        </select>
+      </label>
+
+      <button type="submit">Show Ideas</button>
+    </form>
+
+    <div id="results" class="results" style="display:none;"></div>
+  </main>
+    <script>const hustleForm = document.getElementById('hustleForm');
+if (hustleForm) {
+  const resultsDiv = document.getElementById('results');
+
+  // Curated ideas
+  const hustleIdeas = {
+    tech: [
+      "💻 Fix devices for classmates (screen swaps, tune-ups)",
+      "🕹️ Sell game mods or builds",
+      "⌨️ Offer custom keyboard builds"
+    ],
+    creative: [
+      "🎨 Design logos or thumbnails for small creators",
+      "📓 Sell digital planners on Etsy",
+      "👟 Paint custom sneakers"
+    ],
+    social: [
+      "📱 Run a local biz's TikTok",
+      "🎬 Edit short-form videos for students",
+      "🗂️ Make Notion templates and sell on Gumroad"
+    ],
+    hands: [
+      "🚗 Offer car detailing before prom",
+      "🐾 Pet sitting / dog walking",
+      "🛍️ Flip thrifted finds on Depop"
+    ]
+  };
+
+  hustleForm.addEventListener('submit', e => {
+    e.preventDefault();
+
+    const interest = document.getElementById('interest').value;
+    const ideas = hustleIdeas[interest];
+
+    resultsDiv.innerHTML = '<h3>Try these hustles:</h3>';
+    ideas.forEach(i => {
+      const div = document.createElement('div');
+      div.className = 'hustle';
+      div.textContent = i;
+      resultsDiv.appendChild(div);
+    });
+    resultsDiv.style.display = 'block';
+
+    // optional: record quiz completions
+    if (auth.currentUser) {
+      db.collection('events').add({
+        type: 'quiz',
+        interest,
+        uid: auth.currentUser.uid,
+        timestamp: firebase.firestore.FieldValue.serverTimestamp()
+      });
+    }
+  });
+}</script>
+    <script defer src="firebase.js"></script>
+<script defer src="auth.js"></script>   <!-- or js/auth.js -->
+
+
+</body>
+</html>
