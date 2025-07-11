@@ -1,101 +1,192 @@
-*{box-sizing:border-box}
-
-body{
-  font-family: 'Rubik', sans-serif;
-  margin:0;
-  background:#f8f9fa;
-  color:#212529;
+/* Reset & base */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+body {
+  font-family: 'Inter', sans-serif;
+  background-color: #f8fafc;
+  color: #111;
+  line-height: 1.6;
 }
 
-/* Navbar */
-.navbar{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  padding:0.75rem 1rem;
-  background:#fff;
-  box-shadow:0 2px 4px rgba(0,0,0,0.05);
-  position:sticky;
-  top:0;
+/* Navbar styling */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: white;
+  padding: 1rem 2rem;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+  position: sticky;
+  top: 0;
+  z-index: 200;
+}
+.logo {
+  font-weight: 700;
+  font-size: 1.5rem;
+  color: #00c853; /* Cash‑App green */
+  text-decoration: none;
+}
+.navbar a {
+  margin-right: 1.5rem;
+  color: #111;
+  text-decoration: none;
+  font-weight: 500;
+}
+.navbar button {
+  background: #00c853;
+  border: none;
+  color: white;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.navbar button:hover {
+  background: #00b346;
 }
 
-.logo{
-  font-weight:700;
-  text-decoration:none;
-  color:#007bff;
+/* Main container */
+.container {
+  max-width: 720px;
+  margin: 2rem auto;
+  padding: 0 1rem;
 }
 
-#nav-links a{
-  margin-right:1rem;
-  text-decoration:none;
-  color:#212529;
+/* Hero section for index.html */
+.hero {
+  text-align: center;
+  padding: 4rem 0;
+}
+.hero h1 {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+}
+.hero p {
+  font-size: 1.125rem;
+  margin-bottom: 2rem;
+}
+.cta {
+  display: inline-block;
+  background: #00c853;
+  color: white;
+  padding: 0.75rem 1.75rem;
+  border-radius: 4px;
+  text-decoration: none;
+  font-size: 1rem;
+  font-weight: 600;
+  transition: background 0.2s;
+}
+.cta:hover {
+  background: #00b346;
 }
 
-button{
-  padding:0.5rem 1rem;
-  border:none;
-  border-radius:8px;
-  background:#007bff;
-  color:#fff;
-  cursor:pointer;
+/* Form styling (hustle.html) */
+form {
+  background: white;
+  padding: 2rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
+form h2 {
+  margin-bottom: 1rem;
+  font-size: 1.5rem;
+}
+form label {
+  display: block;
+  margin-top: 1rem;
+  font-weight: 500;
+}
+select {
+  width: 100%;
+  padding: 0.75rem;
+  margin-top: 0.5rem;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+form button {
+  margin-top: 1.5rem;
+  width: 100%;
+  background: #00c853;
+  color: white;
+  padding: 0.75rem;
+  border: none;
+  border-radius: 4px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+form button:hover {
+  background: #00b346;
 }
 
-/* Layout */
-.container{
-  max-width:640px;
-  margin:auto;
-  padding:1rem;
+/* Result boxes */
+.results {
+  margin-top: 2rem;
+}
+.hustle {
+  background: white;
+  padding: 1rem 1.25rem;
+  border-left: 4px solid #00c853;
+  border-radius: 4px;
+  margin-top: 1rem;
+  transition: background 0.1s;
+}
+.hustle:hover {
+  background: #f1fbf5;
 }
 
-.hero{
-  text-align:center;
-  margin-top:2rem;
+/* Posts page */
+#postFormContainer {
+  background: white;
+  padding: 1.5rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+  margin-bottom: 1.5rem;
+}
+#postFormContainer textarea {
+  width: 100%;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  padding: 0.75rem;
+  resize: vertical;
+}
+#postFormContainer button {
+  margin-top: 0.75rem;
+  background: #00c853;
+  border: none;
+  color: white;
+  padding: 0.6rem 1.2rem;
+  border-radius: 4px;
+  font-weight: 500;
+  float: right;
+  transition: background 0.2s;
+}
+#postFormContainer button:hover {
+  background: #00b346;
+}
+.post {
+  background: white;
+  padding: 1rem;
+  border-radius: 6px;
+  margin-bottom: 1rem;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.03);
 }
 
-.hero h1{
-  font-size:2rem;
-  margin-bottom:0.5rem;
+/* About page */
+.about-content {
+  background: white;
+  padding: 2rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
 }
 
-.cta{
-  display:inline-block;
-  margin-top:1rem;
-  background:#28a745;
-  padding:0.75rem 1.5rem;
-  border-radius:8px;
-  color:#fff;
-  text-decoration:none;
-}
-
-/* Forms & Results */
-form label{
-  display:block;
-  margin-top:1rem;
-}
-
-select, textarea{
-  width:100%;
-  padding:0.5rem;
-  border:1px solid #ccc;
-  border-radius:8px;
-  margin-top:0.25rem;
-}
-
-.results{
-  margin-top:1.5rem;
-}
-
-.hustle{
-  background:#e9f5ff;
-  padding:1rem;
-  border-radius:8px;
-  margin-top:0.75rem;
-}
-
-.post{
-  background:#fff;
-  padding:1rem;
-  border-radius:8px;
-  box-shadow:0 1px 2px rgba(0,0,0,0.05);
-  margin-top:1rem;
+/* Utility */
+.small {
+  font-size: 0.875rem;
+  color: #555;
+  margin-top: 0.25rem;
 }
