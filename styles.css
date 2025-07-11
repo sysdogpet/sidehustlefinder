@@ -1,109 +1,62 @@
-/* Base Reset */
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
-body {
-  font-family: 'Space Grotesk', sans-serif;
-
-  background-color: #fff;
-  color: #111;
-  line-height: 1.6;
-}
-
-/* Header */
-.site-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 1.5rem 2rem;
-  border-bottom: 1px solid #eee;
-}
-.logo {
-  font-size: 1.5rem;
-  font-weight: 700;
-}
-nav a {
-  margin-right: 1.25rem;
-  text-decoration: none;
-  color: #111;
-  font-weight: 500;
-}
-nav .btn {
-  padding: 0.5rem 1rem;
-  font-weight: 600;
-  border: none;
-  border-radius: 9999px;
-  cursor: pointer;
-  font-size: 0.95rem;
-}
-
-/* Hero Section */
-.hero {
-  background: #000;
-  color: #fff;
-  padding: 4rem 2rem;
-}
-.hero-content {
+.features {
   display: flex;
   flex-wrap: wrap;
-  align-items: center;
-  justify-content: space-between;
-  gap: 2rem;
-  max-width: 1100px;
-  margin: auto;
+  justify-content: space-around;
+  padding: 4rem 2rem;
+  background: #f9f9f9;
 }
-.hero-text {
-  flex: 1;
-  min-width: 280px;
+.feature {
+  flex: 1 1 220px;
+  max-width: 300px;
+  padding: 1rem;
+  text-align: center;
 }
-.hero-text h1 {
-  font-weight: 600;
+.feature h3 {
+  font-size: 1.25rem;
+  margin-bottom: 0.5rem;
+}
+.feature p {
+  font-size: 0.95rem;
+  color: #444;
 }
 
-.hero-text p {
-  font-size: 1.25rem;
+.why {
+  padding: 4rem 2rem;
+  text-align: center;
+  background: #fff;
+}
+.why h2 {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
+.why p {
+  max-width: 600px;
+  margin: auto;
+  font-size: 1.1rem;
+  color: #333;
+}
+
+.social-proof {
+  padding: 4rem 2rem;
+  background: #000;
+  color: #fff;
+  text-align: center;
+}
+.social-proof h2 {
+  font-size: 2rem;
   margin-bottom: 2rem;
 }
-.hero-image {
-  flex: 1;
+.quote-grid {
   display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
   justify-content: center;
 }
-.hero-image img {
-  max-width: 100%;
-  border-radius: 1rem;
-}
-
-/* Buttons */
-.btn.green {
-  background-color: #00d54b;
-  color: #000;
-  padding: 0.75rem 1.5rem;
-  border-radius: 9999px;
-  text-decoration: none;
-  display: inline-block;
-  font-weight: 600;
-  transition: background 0.2s ease;
-}
-.btn.green:hover {
-  background-color: #00b23e;
-}
-.btn.black {
-  background-color: #111;
-  color: #fff;
-  padding: 0.5rem 1rem;
-}
-.btn.black:hover {
-  background-color: #333;
-}
-
-/* Footer */
-.site-footer {
-  text-align: center;
-  padding: 2rem;
-  font-size: 0.875rem;
-  color: #555;
-  background: #f9f9f9;
+blockquote {
+  background: #111;
+  padding: 1.5rem;
+  border-left: 4px solid #00d54b;
+  max-width: 280px;
+  font-style: italic;
+  border-radius: 6px;
 }
