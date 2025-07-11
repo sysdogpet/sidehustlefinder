@@ -3,61 +3,36 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Side Hustle Finder | Home</title>
-  <link rel="stylesheet" href="styles.css" />
+  <title>Side Hustle Finder</title>
+  <link rel="stylesheet" href="style.css" />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
-  <script defer src="firebase.js"></script>
-  <script defer src="auth.js"></script>
 </head>
 <body>
-  <nav class="navbar">
-    <a class="logo" href="index.html">💸 SideHustle</a>
-    <div class="nav-links">
+  <header class="site-header">
+    <div class="logo">💸 SideHustle</div>
+    <nav>
       <a href="hustle.html">Find Hustle</a>
       <a href="posts.html">Posts</a>
       <a href="about.html">About</a>
-      <button id="login-btn">Login</button>
-      <button id="logout-btn" style="display:none;">Logout</button>
-    </div>
-  </nav>
-
-  <header class="hero">
-    <h1>Turn Your Free Time Into 💰</h1>
-    <p>No boring jobs. Just smart, creative ways to make money as a teen.</p>
-    <a href="hustle.html" class="cta">Take the 60-Second Quiz</a>
+      <button class="btn black">Log In</button>
+    </nav>
   </header>
 
-  <section class="how-it-works">
-    <h2>How It Works</h2>
-    <div class="steps">
-      <div class="step">
-        <h3>1️⃣ Take the Quiz</h3>
-        <p>Tell us your age, time, and interests.</p>
+  <section class="hero">
+    <div class="hero-content">
+      <div class="hero-text">
+        <h1>Turn Time Into Cash</h1>
+        <p>Real side hustles for teens. No boring jobs. Just smarter ways to earn.</p>
+        <a href="hustle.html" class="btn green">Take the 60‑Second Quiz</a>
       </div>
-      <div class="step">
-        <h3>2️⃣ Get Side Hustles</h3>
-        <p>We recommend real money-making ideas just for you.</p>
-      </div>
-      <div class="step">
-        <h3>3️⃣ Try & Share</h3>
-        <p>Test one, then post if it actually worked!</p>
+      <div class="hero-image">
+        <img src="https://via.placeholder.com/300x500/000000/00d54b?text=Phone+Preview" alt="Phone mockup">
       </div>
     </div>
   </section>
 
-  <section class="hustle-preview">
-    <h2>🔥 Popular Hustles</h2>
-    <div class="preview-grid">
-      <div class="hustle-card">🎮 Test mobile games for $5–$20 per session</div>
-      <div class="hustle-card">📸 Design Instagram highlight icons for $10</div>
-      <div class="hustle-card">🐾 Walk dogs for neighbors ($15/hr)</div>
-    </div>
-  </section>
-
-  <section class="cta-box">
-    <h2>Start Your First Hustle Today</h2>
-    <p>You're just one quiz away from unlocking smarter ways to earn.</p>
-    <a href="hustle.html" class="cta big">Find My Hustle</a>
-  </section>
+  <footer class="site-footer">
+    <p>&copy; 2025 SideHustle — Built by teens for teens.</p>
+  </footer>
 </body>
 </html>
