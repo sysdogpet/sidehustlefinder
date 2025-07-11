@@ -1,20 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Side Hustle Finder | Home</title>
-  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
   <script defer src="firebase.js"></script>
   <script defer src="auth.js"></script>
-  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2359381175785200"
-     crossorigin="anonymous"></script>
 </head>
 <body>
   <nav class="navbar">
-    <a href="index.html" class="logo">💸 SideHustle</a>
-    <div id="nav-links">
-      <a href="quiz.html">Find Hustle</a>
+    <a class="logo" href="index.html">💸 SideHustle</a>
+    <div class="nav-links">
+      <a href="hustle.html">Find Hustle</a>
       <a href="posts.html">Posts</a>
       <a href="about.html">About</a>
       <button id="login-btn">Login</button>
@@ -22,20 +21,43 @@
     </div>
   </nav>
 
-  <main class="container">
-    <section class="hero">
-      <h1>Level-Up Your Wallet</h1>
-      <p>No boring jobs. Discover quick, creative ways to earn cash.</p>
-      <a class="cta" href="quiz.html">Take the 60-second quiz →</a>
-    </section>
-  </main>
-    <script defer src="firebase.js"></script>
-<script defer src="auth.js"></script>   <!-- or js/auth.js -->
-<script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-app.js"></script>
-<script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-auth.js"></script>
-<script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-firestore.js"></script>
-<script defer src="firebase.js"></script>
-<script defer src="auth.js"></script>
+  <header class="hero">
+    <h1>Turn Your Free Time Into 💰</h1>
+    <p>No boring jobs. Just smart, creative ways to make money as a teen.</p>
+    <a href="hustle.html" class="cta">Take the 60-Second Quiz</a>
+  </header>
 
+  <section class="how-it-works">
+    <h2>How It Works</h2>
+    <div class="steps">
+      <div class="step">
+        <h3>1️⃣ Take the Quiz</h3>
+        <p>Tell us your age, time, and interests.</p>
+      </div>
+      <div class="step">
+        <h3>2️⃣ Get Side Hustles</h3>
+        <p>We recommend real money-making ideas just for you.</p>
+      </div>
+      <div class="step">
+        <h3>3️⃣ Try & Share</h3>
+        <p>Test one, then post if it actually worked!</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="hustle-preview">
+    <h2>🔥 Popular Hustles</h2>
+    <div class="preview-grid">
+      <div class="hustle-card">🎮 Test mobile games for $5–$20 per session</div>
+      <div class="hustle-card">📸 Design Instagram highlight icons for $10</div>
+      <div class="hustle-card">🐾 Walk dogs for neighbors ($15/hr)</div>
+    </div>
+  </section>
+
+  <section class="cta-box">
+    <h2>Start Your First Hustle Today</h2>
+    <p>You're just one quiz away from unlocking smarter ways to earn.</p>
+    <a href="hustle.html" class="cta big">Find My Hustle</a>
+  </section>
 </body>
 </html>
