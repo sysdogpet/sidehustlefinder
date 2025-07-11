@@ -1,4 +1,3 @@
-/* Reset & base */
 * {
   box-sizing: border-box;
   margin: 0;
@@ -6,187 +5,140 @@
 }
 body {
   font-family: 'Inter', sans-serif;
-  background-color: #f8fafc;
+  background-color: #f9fbfd;
   color: #111;
   line-height: 1.6;
 }
 
-/* Navbar styling */
+/* Navbar */
 .navbar {
   display: flex;
   justify-content: space-between;
   align-items: center;
   background: white;
   padding: 1rem 2rem;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+  box-shadow: 0 2px 6px rgba(0,0,0,0.05);
   position: sticky;
   top: 0;
-  z-index: 200;
+  z-index: 100;
 }
 .logo {
-  font-weight: 700;
   font-size: 1.5rem;
-  color: #00c853; /* Cash‑App green */
+  font-weight: 700;
+  color: #2563eb;
   text-decoration: none;
 }
-.navbar a {
-  margin-right: 1.5rem;
-  color: #111;
+.nav-links a {
+  margin-right: 1rem;
   text-decoration: none;
+  color: #333;
   font-weight: 500;
 }
-.navbar button {
-  background: #00c853;
+.nav-links button {
+  background: #2563eb;
   border: none;
   color: white;
   padding: 0.5rem 1rem;
-  border-radius: 4px;
+  border-radius: 6px;
   font-weight: 500;
   cursor: pointer;
-  transition: background 0.2s;
 }
-.navbar button:hover {
-  background: #00b346;
-}
-
-/* Main container */
-.container {
-  max-width: 720px;
-  margin: 2rem auto;
-  padding: 0 1rem;
+.nav-links button:hover {
+  background: #1d4ed8;
 }
 
-/* Hero section for index.html */
+/* Hero */
 .hero {
   text-align: center;
-  padding: 4rem 0;
+  padding: 4rem 1rem 3rem;
+  background: linear-gradient(to right, #eef2ff, #dbeafe);
 }
 .hero h1 {
   font-size: 2.5rem;
+  font-weight: 700;
   margin-bottom: 1rem;
 }
 .hero p {
-  font-size: 1.125rem;
-  margin-bottom: 2rem;
-}
-.cta {
-  display: inline-block;
-  background: #00c853;
-  color: white;
-  padding: 0.75rem 1.75rem;
-  border-radius: 4px;
-  text-decoration: none;
-  font-size: 1rem;
-  font-weight: 600;
-  transition: background 0.2s;
-}
-.cta:hover {
-  background: #00b346;
-}
-
-/* Form styling (hustle.html) */
-form {
-  background: white;
-  padding: 2rem;
-  border-radius: 8px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
-}
-form h2 {
-  margin-bottom: 1rem;
-  font-size: 1.5rem;
-}
-form label {
-  display: block;
-  margin-top: 1rem;
-  font-weight: 500;
-}
-select {
-  width: 100%;
-  padding: 0.75rem;
-  margin-top: 0.5rem;
-  border: 1px solid #ddd;
-  border-radius: 4px;
-}
-form button {
-  margin-top: 1.5rem;
-  width: 100%;
-  background: #00c853;
-  color: white;
-  padding: 0.75rem;
-  border: none;
-  border-radius: 4px;
-  font-weight: 600;
-  cursor: pointer;
-  transition: background 0.2s;
-}
-form button:hover {
-  background: #00b346;
-}
-
-/* Result boxes */
-.results {
-  margin-top: 2rem;
-}
-.hustle {
-  background: white;
-  padding: 1rem 1.25rem;
-  border-left: 4px solid #00c853;
-  border-radius: 4px;
-  margin-top: 1rem;
-  transition: background 0.1s;
-}
-.hustle:hover {
-  background: #f1fbf5;
-}
-
-/* Posts page */
-#postFormContainer {
-  background: white;
-  padding: 1.5rem;
-  border-radius: 8px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+  font-size: 1.1rem;
   margin-bottom: 1.5rem;
 }
-#postFormContainer textarea {
-  width: 100%;
-  border: 1px solid #ddd;
-  border-radius: 4px;
-  padding: 0.75rem;
-  resize: vertical;
-}
-#postFormContainer button {
-  margin-top: 0.75rem;
-  background: #00c853;
-  border: none;
+.cta {
+  background: #2563eb;
   color: white;
-  padding: 0.6rem 1.2rem;
-  border-radius: 4px;
-  font-weight: 500;
-  float: right;
-  transition: background 0.2s;
+  padding: 0.75rem 1.5rem;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: 600;
+  display: inline-block;
 }
-#postFormContainer button:hover {
-  background: #00b346;
+.cta:hover {
+  background: #1e40af;
 }
-.post {
-  background: white;
-  padding: 1rem;
-  border-radius: 6px;
-  margin-bottom: 1rem;
-  box-shadow: 0 1px 4px rgba(0,0,0,0.03);
+.big {
+  font-size: 1.2rem;
+  padding: 1rem 2rem;
 }
 
-/* About page */
-.about-content {
+/* How It Works */
+.how-it-works {
+  padding: 3rem 1rem;
+  text-align: center;
+}
+.how-it-works h2 {
+  font-size: 2rem;
+  margin-bottom: 2rem;
+}
+.steps {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  gap: 2rem;
+}
+.step {
   background: white;
-  padding: 2rem;
   border-radius: 8px;
   box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+  padding: 1.5rem;
+  flex: 1;
+  min-width: 220px;
 }
 
-/* Utility */
-.small {
-  font-size: 0.875rem;
-  color: #555;
-  margin-top: 0.25rem;
+/* Popular Hustles */
+.hustle-preview {
+  padding: 3rem 1rem;
+  text-align: center;
+}
+.hustle-preview h2 {
+  font-size: 2rem;
+  margin-bottom: 2rem;
+}
+.preview-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  justify-content: center;
+}
+.hustle-card {
+  background: white;
+  padding: 1rem 1.25rem;
+  border-radius: 6px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.06);
+  max-width: 280px;
+  text-align: left;
+  font-weight: 500;
+}
+
+/* CTA Box */
+.cta-box {
+  background: #2563eb;
+  color: white;
+  padding: 3rem 1.5rem;
+  text-align: center;
+}
+.cta-box h2 {
+  font-size: 2rem;
+  margin-bottom: 0.5rem;
+}
+.cta-box p {
+  margin-bottom: 1.5rem;
 }
