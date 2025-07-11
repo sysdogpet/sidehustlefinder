@@ -5,7 +5,8 @@
   padding: 0;
 }
 body {
-  font-family: 'Inter', sans-serif;
+  font-family: 'Space Grotesk', sans-serif;
+
   background-color: #fff;
   color: #111;
   line-height: 1.6;
@@ -58,10 +59,9 @@ nav .btn {
   min-width: 280px;
 }
 .hero-text h1 {
-  font-size: 3rem;
-  font-weight: 700;
-  margin-bottom: 1rem;
+  font-weight: 600;
 }
+
 .hero-text p {
   font-size: 1.25rem;
   margin-bottom: 2rem;
