@@ -101,3 +101,17 @@ refineBtn.addEventListener('click', async () => {
   refineBtn.textContent = 'Ask AI again';
   refineBtn.disabled = false;
 });
+// /api/refine-hustles.js
+export default function handler(req, res) {
+  // basic dummy response – replace with OpenAI later
+  const { interest, city } = req.body;
+
+  const altIdeas = {
+    tech: ["🔧 Repair VR headsets", "💾 Build PCs for neighbors"],
+    creative: ["🖌️ Custom mural paints", "🎞️ TikTok intro animations"],
+    social: ["📷 Local Insta shoots", "📈 Grow Shopify SEO"],
+    hands: ["🪴 Plant-care service", "🚴‍♂️ Bike tune-ups"]
+  };
+
+  res.status(200).json({ ideas: altIdeas[interest] || [] });
+}
