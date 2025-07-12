@@ -1,62 +1,161 @@
-.features {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-around;
-  padding: 4rem 2rem;
-  background: #f9f9f9;
-}
-.feature {
-  flex: 1 1 220px;
-  max-width: 300px;
-  padding: 1rem;
-  text-align: center;
-}
-.feature h3 {
-  font-size: 1.25rem;
-  margin-bottom: 0.5rem;
-}
-.feature p {
-  font-size: 0.95rem;
-  color: #444;
+/* ----------  Root  ---------- */
+:root {
+  --green: #00d54b;
+  --black: #000;
+  --gray: #f5f5f5;
+  --font: 'Space Grotesk', sans-serif;
 }
 
-.why {
-  padding: 4rem 2rem;
-  text-align: center;
-  background: #fff;
+/* ----------  Reset  ---------- */
+*{box-sizing:border-box;margin:0;padding:0}
+body   {font-family:var(--font); color:#111; background:#fff; line-height:1.6;}
+img    {max-width:100%; display:block;}
+ul     {list-style:none;}
+a      {text-decoration:none; color:inherit;}
+
+/* ----------  Header  ---------- */
+.nav{
+  display:flex; justify-content:space-between; align-items:center;
+  padding:1.25rem 2rem; border-bottom:1px solid #eee;
 }
-.why h2 {
-  font-size: 2rem;
-  margin-bottom: 1rem;
+.brand{
+  font-size:1.7rem; font-weight:600; display:flex; align-items:center; gap:.35rem;
 }
-.why p {
-  max-width: 600px;
-  margin: auto;
-  font-size: 1.1rem;
-  color: #333;
+.nav-links{display:flex; gap:1.25rem; align-items:center;}
+.nav-links li{font-size:.95rem; font-weight:500;}
+
+/* ----------  Buttons  ---------- */
+.btn{
+  padding:.55rem 1.2rem; border-radius:9999px; font-weight:600; font-size:.93rem;
+  display:inline-block;
+}
+.btn.green{background:var(--green); color:#000;}
+.btn.green:hover{background:#00b23e;}
+.btn.black{background:#000; color:#fff;}
+.btn.black:hover{background:#2b2b2b;}
+.btn.lg{font-size:1.05rem; padding:.75rem 1.6rem;}
+
+/* ----------  Hero Section  ---------- */
+.hero{
+  display:flex; flex-wrap:wrap; justify-content:center; gap:2rem;
+  padding:3.5rem 1rem 5rem;
 }
 
-.social-proof {
-  padding: 4rem 2rem;
-  background: #000;
-  color: #fff;
-  text-align: center;
+/* black card */
+.hero-card{
+  background:var(--black); color:#fff;
+  display:flex; flex-wrap:wrap; align-items:center; 
+  border-radius:1.25rem; overflow:hidden;
+  max-width:950px; width:100%;
 }
-.social-proof h2 {
-  font-size: 2rem;
-  margin-bottom: 2rem;
+
+/* left copy */
+.hero-copy{flex:1 1 330px; padding:3rem 2.5rem;}
+.headline{font-size:clamp(2.25rem,5vw,3.5rem); font-weight:600; margin-bottom:1.2rem;}
+.subline {font-size:1.125rem; margin-bottom:2rem; max-width:30ch;}
+
+/* right image */
+.hero-device{flex:1 1 320px; display:flex; justify-content:center;}
+.hero-device img{max-height:500px; object-fit:cover;}
+
+/* green QR side card */
+.qr-card{
+  text-align:center; 
+  display:flex; flex-direction:column; align-items:center; justify-content:center;
+  gap:1rem; font-weight:500;
 }
-.quote-grid {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 1.5rem;
-  justify-content: center;
+.qr-card img{width:260px; height:260px; border-radius:1rem;}
+
+/* ----------  Footer  ---------- */
+.site-foot{
+  text-align:center; padding:2.5rem 1rem; font-size:.875rem; color:#555;
 }
-blockquote {
-  background: #111;
-  padding: 1.5rem;
-  border-left: 4px solid #00d54b;
-  max-width: 280px;
-  font-style: italic;
-  border-radius: 6px;
+
+/* ----------  Responsive  ---------- */
+@media (max-width:768px){
+  .nav{flex-direction:column; gap:.75rem;}
+  .nav-links{flex-wrap:wrap; justify-content:center;}
+
+  .hero-card{flex-direction:column;}
+  .hero-copy{text-align:center;}
 }
+/* ===== SIDEBAR ===== */
+.sidebar{
+  position:fixed;
+  top:70px;               /* below header */
+  left:0;
+  width:240px;
+  height:calc(100% - 70px);
+  background:#fafafa;
+  border-right:1px solid #e5e7eb;
+  padding:1.75rem 1.25rem;
+  overflow-y:auto;
+  font-size:.92rem;
+}
+.sidebar h3{
+  font-size:1.05rem;
+  font-weight:600;
+  margin-bottom:.6rem;
+}
+.sidebar ul{margin-bottom:1.5rem;}
+.sidebar li{margin:.55rem 0;}
+.sidebar a{color:#111; transition:color .15s;}
+.sidebar a:hover{color:var(--green);}
+.mt{margin-top:2rem;}
+
+/* push main content right so it’s not hidden */
+body{margin-left:240px;}
+
+/* ===== responsive: hide sidebar on small screens ===== */
+@media(max-width:992px){
+  .sidebar{display:none;}
+  body{margin-left:0;}
+}
+/* ---------- HEADER LAYOUT FIX ---------- */
+.nav{display:flex;justify-content:space-between;align-items:center;height:72px;padding:0 2rem;border-bottom:1px solid #eee;}
+.nav-left{display:flex;align-items:center;gap:1rem;}
+.collapse-btn{
+  background:#000;color:#fff;border:none;border-radius:50%;width:36px;height:36px;
+  font-size:1.15rem;line-height:36px;text-align:center;cursor:pointer;
+}
+
+/* ---------- SIDEBAR ---------- */
+.sidebar{
+  position:fixed;top:72px;left:0;width:240px;height:calc(100% - 72px);
+  background:#fff;border-right:1px solid #e5e7eb;padding:1.7rem 1.3rem;
+  overflow-y:auto;font-size:.94rem;transition:transform .25s ease;
+  z-index:60;
+}
+.sidebar h3{font-size:1.05rem;font-weight:600;margin-bottom:.6rem;}
+.sidebar ul{margin-bottom:1.4rem;}
+.sidebar li{margin:.55rem 0;}
+.sidebar a{color:#111;transition:color .15s;}
+.sidebar a:hover{color:var(--green);}
+.mt{margin-top:2rem;}
+
+/* body shift when sidebar open */
+body.sidebar-open{margin-left:240px;transition:margin-left .25s ease;}
+
+/* collapsed sidebar */
+.sidebar.collapsed{transform:translateX(-260px);}
+body{transition:margin-left .25s ease;}  /* smooth shift */
+
+/* ---------- RESPONSIVE ---------- */
+@media (max-width:992px){
+  .sidebar{display:none;}
+  body{margin-left:0 !important;}
+  .collapse-btn{display:none;}          /* hide hamburger on mobile */
+}
+/* QUIZ CARD */
+.quiz-card{
+  max-width:480px; margin:4rem auto; padding:2.5rem 2rem;
+  background:#fafafa; border:1px solid #eee; border-radius:1rem;
+}
+.quiz-card h2{font-size:1.7rem;margin-bottom:1.3rem;text-align:center;}
+.quiz-card label{display:block;margin:1rem 0 .4rem;font-weight:500;}
+.quiz-card select{width:100%;padding:.6rem;border:1px solid #ddd;border-radius:8px;}
+.quiz-card .hustle{
+  background:#000; color:#fff; padding:.7rem 1rem; border-radius:6px;
+  margin-top:.75rem; font-size:.93rem;
+}
+#results h3{margin-top:1.5rem;margin-bottom:.5rem;}
