@@ -3,85 +3,48 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Community Posts | Side Hustle Finder</title>
+  <title>Community Posts</title>
+
+  <!-- Cash-App styles + fonts -->
   <link rel="stylesheet" href="styles.css">
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <!-- Firebase (same order everywhere) -->
+  <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-firestore.js"></script>
   <script defer src="firebase.js"></script>
   <script defer src="auth.js"></script>
-  <script defer src="posts.js"></script>
-  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2359381175785200"
-     crossorigin="anonymous"></script>
 </head>
+
 <body>
-  <nav class="navbar">
-    <a href="index.html" class="logo">💸 SideHustle</a>
-    <div id="nav-links">
-      <a href="quiz.html">Find Hustle</a>
-      <a href="posts.html">Posts</a>
-      <a href="about.html">About</a>
-      <button id="login-btn">Login</button>
-      <button id="logout-btn" style="display:none;">Logout</button>
+  <!-- ===== HEADER ===== -->
+  <header class="nav">
+    <div class="nav-left">
+      <a class="brand" href="index.html"><span class="brand-icon">💸</span> SideHustleFndr</a>
     </div>
-  </nav>
+    <ul class="nav-links">
+      <li><a href="quiz.html">Find Hustle</a></li>
+      <li><a href="posts.html">Posts</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a class="btn green" href="#">Sign Up →</a></li>
+      <li><a class="btn black" href="#" id="login-btn">Log In</a></li>
+      <li><a class="btn green" href="#" id="logout-btn" style="display:none;">Logout</a></li>
+    </ul>
+  </header>
 
-  <main class="container">
-    <h2>📣 Community Feedback</h2>
-
-    <!-- Shown only when logged in -->
-    <div id="postFormContainer" style="display:none;">
-      <textarea id="postText" placeholder="Share how a hustle went..." rows="4"></textarea>
-      <button id="postBtn">Post</button>
+  <!-- ===== NEW POST FORM ===== -->
+  <main class="posts-wrapper">
+    <div id="newPostCard" class="post-card">
+      <textarea id="postText" rows="3" placeholder="Share a success, tip, or question…"></textarea>
+      <button id="postBtn" class="btn green" style="margin-top:.75rem;">Post</button>
     </div>
 
-    <div id="postsList"></div>
+    <!-- ===== FEED ===== -->
+    <div id="feed"></div>
   </main>
-    <script>
-    // --- Post new feedback ---
-const postBtn = document.getElementById('postBtn');
-if (postBtn) {
-  postBtn.addEventListener('click', async () => {
-    const text = document.getElementById('postText').value.trim();
-    if (!text) return;
 
-    await db.collection('posts').add({
-      text,
-      uid: auth.currentUser.uid,
-      displayName: auth.currentUser.displayName || 'Anon',
-      timestamp: firebase.firestore.FieldValue.serverTimestamp()
-    });
-    document.getElementById('postText').value = '';
-  });
-}
-
-// --- Render all posts in real time ---
-const postsList = document.getElementById('postsList');
-if (postsList) {
-  db.collection('posts').orderBy('timestamp', 'desc').onSnapshot(snapshot => {
-    postsList.innerHTML = '';
-    snapshot.forEach(doc => {
-      const d = doc.data();
-      const div = document.createElement('div');
-      div.className = 'post';
-      div.innerHTML = `
-        <strong>${d.displayName}</strong><br>
-        <p>${d.text}</p>
-        <small>${d.timestamp ? d.timestamp.toDate().toLocaleString() : ''}</small>
-      `;
-      postsList.appendChild(div);
-    });
-  });
-}
-
-    
-    
-    
-    </script>
-    <script defer src="firebase.js"></script>
-<script defer src="auth.js"></script>   <!-- or js/auth.js -->
-<script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-app.js"></script>
-<script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-auth.js"></script>
-<script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-firestore.js"></script>
-<script defer src="firebase.js"></script>
-<script defer src="auth.js"></script>
-
+  <!-- JS -->
+  <script src="posts.js" defer></script>
 </body>
 </html>
