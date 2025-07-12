@@ -1,29 +1,40 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Find Your Hustle</title>
-  <link rel="stylesheet" href="styles.css">
+
+  <!-- Cash-App styles -->
+  <link rel="stylesheet" href="styles.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <!-- Firebase & auth (same order as home page) -->
+  <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-firestore.js"></script>
   <script defer src="firebase.js"></script>
   <script defer src="auth.js"></script>
-  <script defer src="quiz.html"></script>
-  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2359381175785200"
-     crossorigin="anonymous"></script>
 </head>
-<body>
-  <nav class="navbar">
-    <a href="index.html" class="logo">💸 SideHustle</a>
-    <div id="nav-links">
-      <a href="quiz.html">Find Hustle</a>
-      <a href="posts.html">Posts</a>
-      <a href="about.html">About</a>
-      <button id="login-btn">Login</button>
-      <button id="logout-btn" style="display:none;">Logout</button>
-    </div>
-  </nav>
 
-  <main class="container">
+<body>
+  <!-- ===== HEADER (reuse Cash-App nav) ===== -->
+  <header class="nav">
+    <div class="nav-left">
+      <a class="brand" href="index.html"><span class="brand-icon">💸</span> SideHustleFndr</a>
+    </div>
+    <ul class="nav-links">
+      <li><a href="quiz.html">Find Hustle</a></li>
+      <li><a href="posts.html">Posts</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a class="btn green" href="#">Sign Up →</a></li>
+      <li><a class="btn black" href="#" id="login-btn">Log In</a></li>
+      <li><a class="btn green" href="#" id="logout-btn" style="display:none;">Logout</a></li>
+    </ul>
+  </header>
+
+  <!-- ===== QUIZ CARD ===== -->
+  <main class="quiz-card">
     <h2>🧩 Quick Quiz</h2>
     <form id="hustleForm">
       <label>How old are you?
@@ -41,7 +52,7 @@
         </select>
       </label>
 
-      <label>Pick your vibe
+      <label>Your vibe
         <select id="interest">
           <option value="tech">Tech / Gaming</option>
           <option value="creative">Art / Design</option>
@@ -50,73 +61,18 @@
         </select>
       </label>
 
-      <button type="submit">Show Ideas</button>
+      <button class="btn green lg" type="submit">Show Ideas</button>
     </form>
 
-    <div id="results" class="results" style="display:none;"></div>
+    <!-- results container -->
+    <div id="results" style="display:none;"></div>
+
+    <!-- refine button -->
+    <button id="refineBtn" class="btn black" style="display:none;margin-top:1.25rem;">
+      👀 Not a fit?  Ask AI
+    </button>
   </main>
-    <script>const hustleForm = document.getElementById('hustleForm');
-if (hustleForm) {
-  const resultsDiv = document.getElementById('results');
 
-  // Curated ideas
-  const hustleIdeas = {
-    tech: [
-      "💻 Fix devices for classmates (screen swaps, tune-ups)",
-      "🕹️ Sell game mods or builds",
-      "⌨️ Offer custom keyboard builds"
-    ],
-    creative: [
-      "🎨 Design logos or thumbnails for small creators",
-      "📓 Sell digital planners on Etsy",
-      "👟 Paint custom sneakers"
-    ],
-    social: [
-      "📱 Run a local biz's TikTok",
-      "🎬 Edit short-form videos for students",
-      "🗂️ Make Notion templates and sell on Gumroad"
-    ],
-    hands: [
-      "🚗 Offer car detailing before prom",
-      "🐾 Pet sitting / dog walking",
-      "🛍️ Flip thrifted finds on Depop"
-    ]
-  };
-
-  hustleForm.addEventListener('submit', e => {
-    e.preventDefault();
-
-    const interest = document.getElementById('interest').value;
-    const ideas = hustleIdeas[interest];
-
-    resultsDiv.innerHTML = '<h3>Try these hustles:</h3>';
-    ideas.forEach(i => {
-      const div = document.createElement('div');
-      div.className = 'hustle';
-      div.textContent = i;
-      resultsDiv.appendChild(div);
-    });
-    resultsDiv.style.display = 'block';
-
-    // optional: record quiz completions
-    if (auth.currentUser) {
-      db.collection('events').add({
-        type: 'quiz',
-        interest,
-        uid: auth.currentUser.uid,
-        timestamp: firebase.firestore.FieldValue.serverTimestamp()
-      });
-    }
-  });
-}</script>
-    <script defer src="firebase.js"></script>
-<script defer src="auth.js"></script>   <!-- or js/auth.js -->
-<script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-app.js"></script>
-<script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-auth.js"></script>
-<script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-firestore.js"></script>
-<script defer src="firebase.js"></script>
-<script defer src="auth.js"></script>
-
-
+  <script src="quiz.js" defer></script>
 </body>
 </html>
