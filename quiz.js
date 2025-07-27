@@ -6,7 +6,6 @@ function getLocation() {
   navigator.geolocation.getCurrentPosition(async pos => {
     try {
       const { latitude, longitude } = pos.coords;
-      // quick & free reverse geo via Nominatim
       const res = await fetch(`https://nominatim.openstreetmap.org/reverse?format=json&lat=${latitude}&lon=${longitude}`);
       const data = await res.json();
       userLocation.city = data.address.city || data.address.town || data.address.village;
@@ -45,7 +44,6 @@ const baseIdeas = {
 };
 
 function addCityFlavor(ideas) {
-  // simple demo: prepend “in <city>”
   if (!userLocation.city) return ideas;
   return ideas.map(i => `${i} in ${userLocation.city}`);
 }
@@ -72,24 +70,22 @@ refineBtn.addEventListener('click', async () => {
   refineBtn.textContent = '🤖 Thinking...';
   refineBtn.disabled = true;
 
-  // send ideas + quiz answers + location to your serverless endpoint
   const payload = {
     age: document.getElementById('age').value,
     time: document.getElementById('time').value,
     interest: document.getElementById('interest').value,
+    zipcode: document.getElementById('zipcode').value,
     city: userLocation.city,
     region: userLocation.region
   };
 
-  /*  Replace URL with your Cloud Function / OpenAI endpoint  */
   const res = await fetch('/api/refine-hustles', {
     method: 'POST',
-    headers: { 'Content-Type':'application/json' },
+    headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(payload)
   });
-  const data = await res.json();   // expected:  { ideas: [ ... ] }
+  const data = await res.json();
 
-  // update UI
   resultsDiv.innerHTML = '<h3>New curated ideas:</h3>';
   data.ideas.forEach(i => {
     const div = document.createElement('div');
@@ -101,9 +97,9 @@ refineBtn.addEventListener('click', async () => {
   refineBtn.textContent = 'Ask AI again';
   refineBtn.disabled = false;
 });
+
 // /api/refine-hustles.js
 export default function handler(req, res) {
-  // basic dummy response – replace with OpenAI later
   const { interest, city } = req.body;
 
   const altIdeas = {
@@ -113,5 +109,6 @@ export default function handler(req, res) {
     hands: ["🪴 Plant-care service", "🚴‍♂️ Bike tune-ups"]
   };
 
-  res.status(200).json({ ideas: altIdeas[interest] || [] });
+  const custom = (altIdeas[interest] || []).map(i => city ? `${i} in ${city}` : i);
+  res.status(200).json({ ideas: custom });
 }
