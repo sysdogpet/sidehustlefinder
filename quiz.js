@@ -10,15 +10,17 @@ function getLocation() {
       const data = await res.json();
       userLocation.city = data.address.city || data.address.town || data.address.village;
       userLocation.region = data.address.state || data.address.county;
-    } catch (err) { console.warn('Geo lookup failed', err); }
+    } catch (err) {
+      console.warn('Geo lookup failed', err);
+    }
   });
 }
 getLocation();
 
 /********* Hustle logic *********/
-const form       = document.getElementById('hustleForm');
+const form = document.getElementById('hustleForm');
 const resultsDiv = document.getElementById('results');
-const refineBtn  = document.getElementById('refineBtn');
+const refineBtn = document.getElementById('refineBtn');
 
 const baseIdeas = {
   tech: [
@@ -71,36 +73,40 @@ form.addEventListener('submit', e => {
   refineBtn.style.display = 'inline-block';
 });
 
-/********* AI refine (simulated) *********/
+/********* AI refine (real fetch) *********/
 refineBtn.addEventListener('click', async () => {
   refineBtn.textContent = '🤖 Thinking...';
   refineBtn.disabled = true;
 
-  const interest = document.getElementById('interest').value;
-  const city = userLocation.city;
-
-  const altIdeas = {
-    tech: ["🔧 Repair VR headsets", "💾 Build PCs for neighbors"],
-    creative: ["🖌️ Custom mural paints", "🎞️ TikTok intro animations"],
-    social: ["📷 Local Insta shoots", "📈 Grow Shopify SEO"],
-    hands: ["🪴 Plant-care service", "🚴‍♂️ Bike tune-ups"]
+  const payload = {
+    age: document.getElementById('age').value,
+    time: document.getElementById('time').value,
+    interest: document.getElementById('interest').value,
+    zipcode: document.getElementById('zipcode').value,
+    city: userLocation.city,
+    region: userLocation.region
   };
 
-  const ideas = (altIdeas[interest] || []).map(i => city ? `${i} in ${city}` : i);
+  try {
+    const res = await fetch('/api/refine-hustles', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload)
+    });
 
-  resultsDiv.innerHTML = '<h3>New curated ideas:</h3>';
-  ideas.forEach(i => {
-    const div = document.createElement('div');
-    div.className = 'hustle';
-    div.textContent = i;
-    resultsDiv.appendChild(div);
-  });
+    const data = await res.json();
+    resultsDiv.innerHTML = '<h3>New curated ideas:</h3>';
+    data.ideas.forEach(i => {
+      const div = document.createElement('div');
+      div.className = 'hustle';
+      div.textContent = i;
+      resultsDiv.appendChild(div);
+    });
+  } catch (err) {
+    console.error("Refine error:", err);
+    resultsDiv.innerHTML = '<p style="color:red;">Something went wrong. Please try again later.</p>';
+  }
 
   refineBtn.textContent = 'Ask AI again';
   refineBtn.disabled = false;
-});
-const res = await fetch('refine-hustles.js', {
-  method: 'POST',
-  headers: { 'Content-Type': 'application/json' },
-  body: JSON.stringify(payload)
 });
