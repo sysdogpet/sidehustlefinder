@@ -52,6 +52,12 @@ form.addEventListener('submit', e => {
   e.preventDefault();
 
   const interest = document.getElementById('interest').value;
+  const zipcode = document.getElementById('zipcode').value.trim();
+  if (!zipcode) {
+    alert("Please enter your ZIP code.");
+    return;
+  }
+
   const ideas = addCityFlavor(baseIdeas[interest]);
 
   resultsDiv.innerHTML = '<h3>Try these hustles:</h3>';
@@ -62,32 +68,28 @@ form.addEventListener('submit', e => {
     resultsDiv.appendChild(div);
   });
   resultsDiv.style.display = 'block';
-  refineBtn.style.display   = 'inline-block';
+  refineBtn.style.display = 'inline-block';
 });
 
-/********* AI refine (stub) *********/
+/********* AI refine (simulated) *********/
 refineBtn.addEventListener('click', async () => {
   refineBtn.textContent = '🤖 Thinking...';
   refineBtn.disabled = true;
 
-  const payload = {
-    age: document.getElementById('age').value,
-    time: document.getElementById('time').value,
-    interest: document.getElementById('interest').value,
-    zipcode: document.getElementById('zipcode').value,
-    city: userLocation.city,
-    region: userLocation.region
+  const interest = document.getElementById('interest').value;
+  const city = userLocation.city;
+
+  const altIdeas = {
+    tech: ["🔧 Repair VR headsets", "💾 Build PCs for neighbors"],
+    creative: ["🖌️ Custom mural paints", "🎞️ TikTok intro animations"],
+    social: ["📷 Local Insta shoots", "📈 Grow Shopify SEO"],
+    hands: ["🪴 Plant-care service", "🚴‍♂️ Bike tune-ups"]
   };
 
-  const res = await fetch('/api/refine-hustles', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify(payload)
-  });
-  const data = await res.json();
+  const ideas = (altIdeas[interest] || []).map(i => city ? `${i} in ${city}` : i);
 
   resultsDiv.innerHTML = '<h3>New curated ideas:</h3>';
-  data.ideas.forEach(i => {
+  ideas.forEach(i => {
     const div = document.createElement('div');
     div.className = 'hustle';
     div.textContent = i;
@@ -97,18 +99,8 @@ refineBtn.addEventListener('click', async () => {
   refineBtn.textContent = 'Ask AI again';
   refineBtn.disabled = false;
 });
-
-// /api/refine-hustles.js
-export default function handler(req, res) {
-  const { interest, city } = req.body;
-
-  const altIdeas = {
-    tech: ["🔧 Repair VR headsets", "💾 Build PCs for neighbors"],
-    creative: ["🖌️ Custom mural paints", "🎞️ TikTok intro animations"],
-    social: ["📷 Local Insta shoots", "📈 Grow Shopify SEO"],
-    hands: ["🪴 Plant-care service", "🚴‍♂️ Bike tune-ups"]
-  };
-
-  const custom = (altIdeas[interest] || []).map(i => city ? `${i} in ${city}` : i);
-  res.status(200).json({ ideas: custom });
-}
+const res = await fetch('refine-hustles.js', {
+  method: 'POST',
+  headers: { 'Content-Type': 'application/json' },
+  body: JSON.stringify(payload)
+});
